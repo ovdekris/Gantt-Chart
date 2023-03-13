@@ -1,35 +1,30 @@
-import Chart from 'chart.js/auto'
-
+import 'chartjs-adapter-date-fns';
+import 'chartjs-adapter-luxon';
+import Chart from 'chart.js/auto';
 (async function() {
-    const data=
-        [{x: '2016-12-25', y: 20},
-            {x: '2016-12-26', y: 10}]
+    const ctx = document.getElementById('myChart');
 
-    new Chart(
-        document.getElementById('acquisitions'),
-        {
-            type: 'bar',
-            options:{
-                indexAxis: 'y',
-                min:'2020-09-02',
-                // scales:{
-                //     x:{
-                //         type:"time",
-                //         time:{
-                //             unit:"day"
-                //         }
-                //     }
-                // }
-            },
-            data: {
-                labels: data.map(row => row.y),
-                datasets: [
-                    {
-                        label: 'Acquisitions by day',
-                        data: data.map(row => row.x)
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            datasets: [{
+                label: 'Gant Chart',
+                data: [
+                    {x: '2022-09-09', y: "Task 1"}],
+                borderWidth: 1
+            }],
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    type: 'time',
+                    time:{
+                        unit: 'day'
                     }
-                ]
+                }
             }
         }
-    );
-})();
+    });
+
+        })();
