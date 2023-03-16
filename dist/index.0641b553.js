@@ -564,32 +564,48 @@ var _auto = require("chart.js/auto");
 var _autoDefault = parcelHelpers.interopDefault(_auto);
 (async function() {
     const ctx = document.getElementById("myChart");
+    const todayLine = {
+        id: "todayLine",
+        afterDatasetsDraw (chart, args, options) {
+            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            ctx.save();
+            ctx.beginPath();
+            ctx.lineWidth = 3;
+            ctx.moveTo(x.getPixelForValue(new Date()), top);
+            ctx.lineTo(x.getPixelForValue(new Date()), bottom);
+            ctx.stroke();
+        }
+    };
     new (0, _autoDefault.default)(ctx, {
         type: "bar",
         data: {
             datasets: [
                 {
                     label: "Gant Chart",
-                    backgroundColor: "#FFC0CB",
+                    backgroundColor: [
+                        "#FFC0CB",
+                        "#fff",
+                        "#FFC0CB"
+                    ],
                     data: [
                         {
                             x: [
-                                "2022-09-09",
-                                "2022-09-01"
+                                "2023-01-09",
+                                "2023-01-01"
                             ],
                             y: "Task 1"
                         },
                         {
                             x: [
-                                "2022-09-08",
-                                "2022-09-03"
+                                "2023-02-08",
+                                "2023-02-03"
                             ],
                             y: "Task 2"
                         },
                         {
                             x: [
-                                "2022-09-07",
-                                "2022-09-02"
+                                "2023-03-07",
+                                "2023-03-02"
                             ],
                             y: "Task 3"
                         }
@@ -605,8 +621,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                     time: {
                         unit: "day"
                     },
-                    min: "2022-08-08",
-                    max: "2022-10-10"
+                    min: "2023-01-01",
+                    max: "2023-10-10"
                 }
             }
         }
