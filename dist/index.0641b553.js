@@ -570,13 +570,30 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             datasets: [
                 {
                     label: "Gant Chart",
+                    backgroundColor: "#FFC0CB",
                     data: [
                         {
-                            x: "2022-09-09",
+                            x: [
+                                "2022-09-09",
+                                "2022-09-01"
+                            ],
                             y: "Task 1"
+                        },
+                        {
+                            x: [
+                                "2022-09-08",
+                                "2022-09-03"
+                            ],
+                            y: "Task 2"
+                        },
+                        {
+                            x: [
+                                "2022-09-07",
+                                "2022-09-02"
+                            ],
+                            y: "Task 3"
                         }
-                    ],
-                    borderWidth: 1
+                    ]
                 }
             ]
         },
@@ -587,7 +604,9 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                     type: "time",
                     time: {
                         unit: "day"
-                    }
+                    },
+                    min: "2022-08-08",
+                    max: "2022-10-10"
                 }
             }
         }
