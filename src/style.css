@@ -7,6 +7,10 @@ body{
     background-color: whitesmoke;
 }
 .container {
-    width: 800px;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    padding: 10px;
+    height: 600px;
     margin: 0 auto;
 }

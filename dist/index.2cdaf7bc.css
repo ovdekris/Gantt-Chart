@@ -9,8 +9,12 @@ body {
 }
 
 .container {
-  width: 800px;
+  width: 80%;
+  height: 600px;
+  justify-content: center;
   margin: 0 auto;
+  padding: 10px;
+  display: flex;
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */
