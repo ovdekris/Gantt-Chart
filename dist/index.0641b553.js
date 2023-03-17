@@ -568,12 +568,13 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         id: "assignedTasks",
         afterDatasetsDraw (chart, args, options) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
-            ctx.font = "12px sans-serif bold";
+            ctx.font = "bold 14px sans-serif";
             ctx.fillStyle = "black";
+            ctx.textBaseline = "middle";
+            console.log(data.datasets[0].data[0].name);
             ctx.fillText("text", 10, y.getPixelForValue(0));
         }
     };
-    console.log(assignedTasks);
     new (0, _autoDefault.default)(ctx, {
         type: "bar",
         data: {
@@ -621,9 +622,6 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                         }
                     ]
                 }
-            ],
-            plugins: [
-                assignedTasks
             ]
         },
         options: {
@@ -635,6 +633,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             indexAxis: "y",
             scales: {
                 x: {
+                    position: "top",
                     type: "time",
                     time: {
                         unit: "day"
@@ -643,7 +642,10 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                     max: "2023-03-30"
                 }
             }
-        }
+        },
+        plugins: [
+            assignedTasks
+        ]
     });
 })();
 

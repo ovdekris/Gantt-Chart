@@ -4,13 +4,16 @@
     box-sizing: border-box;
 }
 body{
-    background-color: whitesmoke;
+    background-color: pink;
 }
 .container {
     display: flex;
     width: 80%;
     justify-content: center;
-    padding: 10px;
+    border: 10px solid deeppink;
+    padding: 15px;
     height: 600px;
-    margin: 0 auto;
+    margin: 40px auto 0 auto;
+    background-color: white;
+    border-radius: 50px;
 }

@@ -7,12 +7,13 @@ import Chart from 'chart.js/auto';
         id:'assignedTasks',
         afterDatasetsDraw(chart, args, options) {
             const {ctx, data, chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
-            ctx.font='12px sans-serif bold';
+            ctx.font='bold 14px sans-serif';
             ctx.fillStyle='black';
+            ctx.textBaseline='middle';
+            console.log(data.datasets[0].data[0].name)
             ctx.fillText('text',10,y.getPixelForValue(0));
         }
     }
-    console.log(assignedTasks);
     new Chart(ctx, {
 
         type: 'bar',
@@ -31,7 +32,7 @@ import Chart from 'chart.js/auto';
                     {x: ['2023-03-07','2023-03-02'], y: "Task 3", name: 'Ariel'}],
 
             }],
-            plugins:[assignedTasks],
+
         },
         options: {
             layout:{
@@ -42,6 +43,7 @@ import Chart from 'chart.js/auto';
             indexAxis: 'y',
             scales: {
                 x: {
+                    position: 'top',
                     type: 'time',
                     time:{
                         unit: 'day'
@@ -50,7 +52,8 @@ import Chart from 'chart.js/auto';
                     max: '2023-03-30'
                 }
             }
-        }
+        },
+        plugins:[assignedTasks],
     });
 
         })();
