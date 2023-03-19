@@ -564,17 +564,37 @@ var _auto = require("chart.js/auto");
 var _autoDefault = parcelHelpers.interopDefault(_auto);
 (async function() {
     const ctx = document.getElementById("myChart");
+    //status plagin
+    const status = {
+        id: "status",
+        afterDatasetsDraw (chart, args, options) {
+            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            ctx.save();
+            ctx.font = "bold 14px sans-serif";
+            ctx.fillStyle = "black";
+            ctx.textBaseline = "middle";
+            data.datasets[0].data.map((data, index)=>{
+                ctx.fillText(data.status, right + 20, y.getPixelForValue(index));
+            });
+            ctx.restore();
+        }
+    };
+    //assignedTasks plugin
     const assignedTasks = {
         id: "assignedTasks",
         afterDatasetsDraw (chart, args, options) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            ctx.save();
             ctx.font = "bold 14px sans-serif";
             ctx.fillStyle = "black";
             ctx.textBaseline = "middle";
-            console.log(data.datasets[0].data[0].name);
-            ctx.fillText("text", 10, y.getPixelForValue(0));
+            data.datasets[0].data.map((data, index)=>{
+                ctx.fillText(data.name, 10, y.getPixelForValue(index));
+            });
+            ctx.restore();
         }
     };
+    //main objects
     new (0, _autoDefault.default)(ctx, {
         type: "bar",
         data: {
@@ -602,7 +622,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                                 "2023-03-01"
                             ],
                             y: "Task 1",
-                            name: "Kris"
+                            name: "Kris",
+                            status: "Completed"
                         },
                         {
                             x: [
@@ -610,7 +631,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                                 "2023-03-03"
                             ],
                             y: "Task 2",
-                            name: "John"
+                            name: "John",
+                            status: "Delayed"
                         },
                         {
                             x: [
@@ -618,7 +640,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                                 "2023-03-02"
                             ],
                             y: "Task 3",
-                            name: "Ariel"
+                            name: "Ariel",
+                            status: "Pending"
                         }
                     ]
                 }
@@ -627,7 +650,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         options: {
             layout: {
                 padding: {
-                    left: 100
+                    left: 100,
+                    right: 100
                 }
             },
             indexAxis: "y",
@@ -644,7 +668,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             }
         },
         plugins: [
-            assignedTasks
+            assignedTasks,
+            status
         ]
     });
 })();
