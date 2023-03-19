@@ -570,22 +570,23 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         afterDatasetsDraw (chart, args, options) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
-            ctx.font = "bold 14px sans-serif";
+            ctx.font = "bold 12px sans-serif";
             ctx.fillStyle = "black";
             ctx.textBaseline = "middle";
             data.datasets[0].data.map((data, index)=>{
-                ctx.fillText(data.status, right + 20, y.getPixelForValue(index));
+                ctx.fillText("/uf00c", right, y.getPixelForValue(index));
             });
             ctx.restore();
         }
     };
+    console.log("/uf00c");
     //assignedTasks plugin
     const assignedTasks = {
         id: "assignedTasks",
         afterDatasetsDraw (chart, args, options) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
-            ctx.font = "bold 14px sans-serif";
+            ctx.font = "bold 12px FontAwesome";
             ctx.fillStyle = "black";
             ctx.textBaseline = "middle";
             data.datasets[0].data.map((data, index)=>{
@@ -623,7 +624,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             ],
                             y: "Task 1",
                             name: "Kris",
-                            status: "Completed"
+                            status: 0
                         },
                         {
                             x: [
@@ -632,7 +633,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             ],
                             y: "Task 2",
                             name: "John",
-                            status: "Delayed"
+                            status: 1
                         },
                         {
                             x: [
@@ -641,7 +642,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             ],
                             y: "Task 3",
                             name: "Ariel",
-                            status: "Pending"
+                            status: 2
                         }
                     ]
                 }

@@ -9,22 +9,23 @@ import Chart from 'chart.js/auto';
         afterDatasetsDraw(chart, args, options) {
             const {ctx, data, chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
             ctx.save();
-            ctx.font='bold 14px sans-serif';
+            ctx.font='bold 12px sans-serif';
             ctx.fillStyle='black';
             ctx.textBaseline='middle';
             data.datasets[0].data.map((data,index)=>{
-                ctx.fillText(data.status,right+20,y.getPixelForValue(index));
+                ctx.fillText("/uf00c",right,y.getPixelForValue(index));
             })
             ctx.restore();
         }
     }
+    console.log('/uf00c')
     //assignedTasks plugin
     const assignedTasks={
         id:'assignedTasks',
         afterDatasetsDraw(chart, args, options) {
             const {ctx, data, chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
             ctx.save();
-            ctx.font='bold 14px sans-serif';
+            ctx.font='bold 12px FontAwesome';
             ctx.fillStyle='black';
             ctx.textBaseline='middle';
             data.datasets[0].data.map((data,index)=>{
@@ -48,9 +49,9 @@ import Chart from 'chart.js/auto';
                 borderRadius: 15,
                 opacity: 90,
                 data: [
-                    {x: ['2023-03-09','2023-03-01'], y: "Task 1", name:'Kris',status: "Completed"},
-                    {x: ['2023-03-08','2023-03-03'], y: "Task 2", name: 'John',status: "Delayed"},
-                    {x: ['2023-03-07','2023-03-02'], y: "Task 3", name: 'Ariel',status: "Pending"}],
+                    {x: ['2023-03-09','2023-03-01'], y: "Task 1", name:'Kris',status: 0},
+                    {x: ['2023-03-08','2023-03-03'], y: "Task 2", name: 'John',status: 1},
+                    {x: ['2023-03-07','2023-03-02'], y: "Task 3", name: 'Ariel',status: 2}],
 
             }],
 
