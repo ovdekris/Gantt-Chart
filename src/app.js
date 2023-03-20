@@ -8,12 +8,15 @@ import Chart from 'chart.js/auto';
         id:"status",
         afterDatasetsDraw(chart, args, options) {
             const {ctx, data, chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
+            const icons=["\uf00c","\uf00d","\uf110"];
+            const colors=["rgba(255, 10, 13,0.8)","rgb(0,255,255)","rgb(255,0,255)"];
             ctx.save();
-            ctx.font='bold 12px sans-serif';
-            ctx.fillStyle='black';
+            ctx.font='bold 12px FontAwesome';
+            // ctx.fillStyle=colors[1];
             ctx.textBaseline='middle';
             data.datasets[0].data.map((data,index)=>{
-                ctx.fillText("/uf00c",right,y.getPixelForValue(index));
+                ctx.arc(x,y,1,angleS,angleE,false);
+                ctx.fillText(icons[data.status],right+10,y.getPixelForValue(index));
             })
             ctx.restore();
         }
