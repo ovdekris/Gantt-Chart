@@ -2,13 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Font Awesome 5 Free';
-    content: "/f00c"; /* FontAwesome Unicode */
 }
 body{
     background-color: pink;
 }
 .container {
+    width: 80%;
     display: flex;
     justify-content: center;
     border: 10px solid deeppink;
