@@ -7,8 +7,8 @@ import Chart from 'chart.js/auto';
     //status plagin
     const status={
         id:"status",
-        afterDatasetsDraw(chart, args, options) {
-            const {ctx, data, options,chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
+        afterDatasetsDraw(chart, args) {
+            const {ctx, data,chartArea:{top,bottom,left,right}, scales:{x,y}}=chart;
             const icons=["\uf00c","\uf00d","\uf110"];
             const angle=Math.PI/180;
             ctx.save();
@@ -48,7 +48,6 @@ import Chart from 'chart.js/auto';
     }
     //main objects
     new Chart(ctx, {
-
         type: 'bar',
         data: {
             datasets: [{
@@ -56,15 +55,19 @@ import Chart from 'chart.js/auto';
                 borderSkipped:false,
                 borderWidth: 0,
                 borderRadius: 15,
-                barPercentage: 0.5,
+                barPercentage: 0.8,
                 backgroundColor: (ctx)=>{
                     return colors[ctx.raw.status];
                 },
                 opacity: 90,
                 data: [
-                    {x: ['2023-03-09','2023-03-01'], y: "Task 1", name:'Kris',status: 0},
-                    {x: ['2023-03-08','2023-03-03'], y: "Task 2", name: 'John',status: 1},
-                    {x: ['2023-03-07','2023-03-02'], y: "Task 3", name: 'Ariel',status: 2}],
+                    {x: ['2023-03-01','2023-03-09'], y: "Task 1", name:'Kris',status: 0},
+                    {x: ['2023-03-03','2023-03-08'], y: "Task 2", name: 'John',status: 1},
+                    {x: ['2023-03-02','2023-03-07'], y: "Task 3", name: 'Ariel',status: 2},
+                    {x: ['2023-03-04','2023-03-10'], y: "Task 4", name:'Donat',status: 0},
+                    {x: ['2023-03-15','2023-03-20'], y: "Task 5", name: 'Leila',status: 2},
+                    {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1}],
+
 
             }],
 
@@ -82,14 +85,41 @@ import Chart from 'chart.js/auto';
                     position: 'top',
                     type: 'time',
                     time:{
-                        unit: 'day'
+                        // unit: 'day'
+                        displayFormats:{
+                            day:'d'
+                        }
                     },
                     min:'2023-03-01',
                     max: '2023-03-30'
                 }
+            },
+            plugins:{
+                legend:{
+                    display:false
+                },
+                tooltip:{
+                    callbacks:{
+                        title:(ctx)=>{
+                            console.log(ctx);
+                            const startDate=new Date(ctx[0].raw.x[0]);
+                            const endDate=new Date(ctx[0].raw.x[1]);
+                            const formatedStartDate=startDate.toLocaleString([],{
+                                year:'numeric',
+                                month:'short',
+                                day:'numeric',
+                            });
+                            const formatedEndDate=endDate.toLocaleString([],{
+                                year:'numeric',
+                                month:'short',
+                                day:'numeric',
+                            });
+                            return ['James',`Task Date: ${formatedStartDate} - ${formatedEndDate}`];
+                        }}
+                }
             }
         },
-        plugins:[assignedTasks,status],
+        plugins:[assignedTasks,status]
     });
 
         })();
