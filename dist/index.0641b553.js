@@ -598,6 +598,26 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.restore();
         }
     };
+    //todayLine plugin
+    const todayLine = {
+        id: "todayLine",
+        afterDatasetsDraw (chart, args, options) {
+            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            ctx.save();
+            ctx.beginPath();
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "rgba(102,102,102,1)";
+            ctx.setLineDash([
+                6,
+                6
+            ]);
+            ctx.moveTo(x.getPixelForValue, new Date(), top);
+            ctx.lineTo(x.getPixelForValue, new Date(), bottom);
+            ctx.stroke();
+            ctx.setLineDash([]);
+        }
+    };
+    console.log(new Date());
     //assignedTasks plugin
     const assignedTasks = {
         id: "assignedTasks",
@@ -717,7 +737,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 tooltip: {
                     callbacks: {
                         title: (ctx)=>{
-                            console.log(ctx);
+                            console.log(ctx[0].raw.x[0]);
                             const startDate = new Date(ctx[0].raw.x[0]);
                             const endDate = new Date(ctx[0].raw.x[1]);
                             const formatedStartDate = startDate.toLocaleString([], {
@@ -731,7 +751,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                                 day: "numeric"
                             });
                             return [
-                                "James",
+                                ctx[0].raw.name,
                                 `Task Date: ${formatedStartDate} - ${formatedEndDate}`
                             ];
                         }
@@ -741,6 +761,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         },
         plugins: [
             assignedTasks,
+            todayLine,
             status
         ]
     });
