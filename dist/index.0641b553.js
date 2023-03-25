@@ -590,18 +590,18 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 ctx.closePath();
                 ctx.fill();
                 ctx.fillStyle = "white";
-                ctx.fillText(icons[data.status], right + 20, y.getPixelForValue(index));
+                ctx.fillText(icons[data.status], right + 25, y.getPixelForValue(index));
             });
             ctx.font = "bolder 12px sans-serif";
             ctx.fillStyle = "black";
-            ctx.fillText("Status", right + 20, top - 15);
+            ctx.fillText("Status", right + 30, top - 15);
             ctx.restore();
         }
     };
     //todayLine plugin
     const todayLine = {
         id: "todayLine",
-        afterDatasetsDraw (chart, args, options) {
+        afterDatasetsDraw (chart, args, pluginOptions) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
             ctx.beginPath();
@@ -611,10 +611,25 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 6,
                 6
             ]);
-            ctx.moveTo(x.getPixelForValue, new Date(), top);
-            ctx.lineTo(x.getPixelForValue, new Date(), bottom);
+            ctx.moveTo(x.getPixelForValue(new Date()), top);
+            ctx.lineTo(x.getPixelForValue(new Date()), bottom);
             ctx.stroke();
             ctx.setLineDash([]);
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = "rgba(102,102,102,1)";
+            ctx.fillStyle = "rgba(102,102,102,1)";
+            ctx.moveTo(x.getPixelForValue(new Date()), top + 3);
+            ctx.lineTo(x.getPixelForValue(new Date()) - 6, top - 6);
+            ctx.lineTo(x.getPixelForValue(new Date()) + 6, top - 6);
+            ctx.closePath();
+            ctx.stroke();
+            ctx.fill();
+            ctx.restore();
+            ctx.font = "bold 12px sans-serif";
+            ctx.fillStyle = "rgba(102,102,102,1)";
+            ctx.textAlign = "center";
+            ctx.fillText("Today", x.getPixelForValue(new Date()), bottom + 15);
         }
     };
     console.log(new Date());
@@ -627,6 +642,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.font = "bold 12px sans-serif";
             ctx.fillStyle = "black";
             ctx.textBaseline = "middle";
+            ctx.textAlign = "left";
             data.datasets[0].data.map((data, index)=>{
                 ctx.fillText(data.name, 5, y.getPixelForValue(index));
                 ctx.fillText("Names", 10, top - 15);
@@ -712,7 +728,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             layout: {
                 padding: {
                     left: 100,
-                    right: 70
+                    right: 70,
+                    bottom: 20
                 }
             },
             indexAxis: "y",
