@@ -1,6 +1,8 @@
 import 'chartjs-adapter-date-fns';
 import 'chartjs-adapter-luxon';
 import Chart from 'chart.js/auto';
+
+
 (async function() {
     const ctx = document.getElementById('myChart');
     const colors=["rgba(255, 10, 13,0.8)","rgb(0,255,255)","rgb(255,0,255)"];
@@ -138,7 +140,6 @@ import Chart from 'chart.js/auto';
                 tooltip:{
                     callbacks:{
                         title:(ctx)=>{
-                            console.log(ctx[0].raw.x[0]);
                             const startDate=new Date(ctx[0].raw.x[0]);
                             const endDate=new Date(ctx[0].raw.x[1]);
                             const formatedStartDate=startDate.toLocaleString([],{
@@ -160,3 +161,6 @@ import Chart from 'chart.js/auto';
     });
 
         })();
+function chartFilter(date){
+    const year=date.value.substring(0,4);
+}

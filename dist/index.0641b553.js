@@ -754,7 +754,6 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 tooltip: {
                     callbacks: {
                         title: (ctx)=>{
-                            console.log(ctx[0].raw.x[0]);
                             const startDate = new Date(ctx[0].raw.x[0]);
                             const endDate = new Date(ctx[0].raw.x[1]);
                             const formatedStartDate = startDate.toLocaleString([], {
@@ -783,6 +782,9 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         ]
     });
 })();
+function chartFilter(date) {
+    const year = date.value.substring(0, 4);
+}
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {
 /*!

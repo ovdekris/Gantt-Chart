@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container"><canvas id="myChart"></canvas></div>
+<div class="container">
+    <canvas id="myChart"></canvas>
+    <input id="dateId" type="date" placeholder="yyyy-mm-dd" pattern="\d{4}-\d{2}-\d{2}" onchange="chartRealize(this)">
+</div>
 
 <!-- <script type="module" src="dimensions.js"></script> -->
 <script type="module" src="app.js"></script>
