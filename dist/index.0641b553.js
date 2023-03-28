@@ -782,8 +782,17 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         ]
     });
 })();
-function chartFilter(date) {
-    const year = date.value.substring(0, 4);
+const inputDate = document.querySelector("#dateId");
+inputDate.onchange = createData(undefined);
+function createData(date) {
+    console.log(date.value);
+// const year=date.value.substring(0,4);
+// const month=date.value.substring(5,7);
+// const lastDay=(y,m)=>{
+//     return new Date(y,m,0).getDate();
+// }
+// const startDate=`${year}-${month}-01`;
+// const endDate=`${year}-${month}-${lastDay(year,month)}`;
 }
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {

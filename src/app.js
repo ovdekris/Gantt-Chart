@@ -161,6 +161,15 @@ import Chart from 'chart.js/auto';
     });
 
         })();
-function chartFilter(date){
-    const year=date.value.substring(0,4);
+const inputDate=document.querySelector("#dateId");
+inputDate.onchange=createData(this);
+function createData(date){
+    console.log(date.value)
+    // const year=date.value.substring(0,4);
+    // const month=date.value.substring(5,7);
+    // const lastDay=(y,m)=>{
+    //     return new Date(y,m,0).getDate();
+    // }
+    // const startDate=`${year}-${month}-01`;
+    // const endDate=`${year}-${month}-${lastDay(year,month)}`;
 }
