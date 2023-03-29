@@ -651,7 +651,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         }
     };
     //main objects
-    new (0, _autoDefault.default)(ctx, {
+    let myChart = new (0, _autoDefault.default)(ctx, {
         type: "bar",
         data: {
             datasets: [
@@ -781,19 +781,26 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             status
         ]
     });
-})();
-const inputDate = document.querySelector("#dateId");
-inputDate.onchange = createData(undefined);
-function createData(date) {
-    console.log(date.value);
-// const year=date.value.substring(0,4);
-// const month=date.value.substring(5,7);
-// const lastDay=(y,m)=>{
-//     return new Date(y,m,0).getDate();
+    document.querySelector(".container").innerHTML = '<canvas id="myChart"></canvas>';
+    let p1 = document.querySelector("#myChart");
+    new (0, _autoDefault.default)(p1);
+// const inputDate=document.querySelector("#dateId");
+// inputDate.addEventListener("change",createData);
+// function createData(){
+//     const year=this.value.substring(0,4);npm run
+//     const month=this.value.substring(5,7);
+//     const lastDay=(y,m)=>{
+//         return new Date(y,m,0).getDate();
+//     }
+//     const startDate=`${year}-${month}-01`;
+//     const endDate=`${year}-${month}-${lastDay(year,month)}`;
+//     console.log(endDate);
+//
+//     // myChart.config.options.scales.x.min=startDate;
+//     // myChart.config.options.scales.x.min=endDate;
+//     myCharts.update();
 // }
-// const startDate=`${year}-${month}-01`;
-// const endDate=`${year}-${month}-${lastDay(year,month)}`;
-}
+})();
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {
 /*!

@@ -85,7 +85,7 @@ import Chart from 'chart.js/auto';
         }
     }
     //main objects
-    new Chart(ctx, {
+    let myChart=new Chart(ctx, {
         type: 'bar',
         data: {
             datasets: [{
@@ -158,18 +158,29 @@ import Chart from 'chart.js/auto';
             }
         },
         plugins:[assignedTasks,todayLine,status]
+
     });
 
-        })();
-const inputDate=document.querySelector("#dateId");
-inputDate.onchange=createData(this);
-function createData(date){
-    console.log(date.value)
-    // const year=date.value.substring(0,4);
-    // const month=date.value.substring(5,7);
-    // const lastDay=(y,m)=>{
-    //     return new Date(y,m,0).getDate();
+    document.querySelector(".container").innerHTML = '<canvas id="myChart"></canvas>';
+    let p1=document.querySelector("#myChart");
+    new Chart(p1)
+    // const inputDate=document.querySelector("#dateId");
+    // inputDate.addEventListener("change",createData);
+    // function createData(){
+    //     const year=this.value.substring(0,4);npm run
+    //     const month=this.value.substring(5,7);
+    //     const lastDay=(y,m)=>{
+    //         return new Date(y,m,0).getDate();
+    //     }
+    //     const startDate=`${year}-${month}-01`;
+    //     const endDate=`${year}-${month}-${lastDay(year,month)}`;
+    //     console.log(endDate);
+    //
+    //     // myChart.config.options.scales.x.min=startDate;
+    //     // myChart.config.options.scales.x.min=endDate;
+    //     myCharts.update();
     // }
-    // const startDate=`${year}-${month}-01`;
-    // const endDate=`${year}-${month}-${lastDay(year,month)}`;
-}
+        })
+
+();
+
