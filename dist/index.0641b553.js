@@ -787,16 +787,10 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         ]
     };
     //main objects
-    let myChart = new (0, _autoDefault.default)(ctx, config);
-    let canvas = document.createElement("canvas");
-    canvas.setAttribute("id", "myChart");
-    document.querySelector(".container").appendChild(canvas);
-    myChart = new (0, _autoDefault.default)(document.getElementById("myChart", config));
-    const inputDate = document.createElement("input");
-    inputDate.className = "dateId";
-    document.querySelector(".container").appendChild(inputDate);
-    inputDate.addEventListener("change", createData);
-    function createData() {
+    const myChart = new (0, _autoDefault.default)(document.getElementById("myChart"), config);
+    //function for chart data filter
+    document.getElementById("dateId").addEventListener("change", chartFilter);
+    function chartFilter(date) {
         const year = this.value.substring(0, 4);
         const month = this.value.substring(5, 7);
         const lastDay = (y, m)=>{
@@ -804,9 +798,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         };
         const startDate = `${year}-${month}-01`;
         const endDate = `${year}-${month}-${lastDay(year, month)}`;
-        console.log(endDate);
         myChart.config.options.scales.x.min = startDate;
-        myChart.config.options.scales.x.min = endDate;
+        myChart.config.options.scales.x.max = endDate;
         myChart.update();
     }
 })();
