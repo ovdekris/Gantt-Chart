@@ -65,7 +65,6 @@ import Chart from 'chart.js/auto';
 
         }
     }
-    console.log(new Date())
     //assignedTasks plugin
     const assignedTasks={
         id:'assignedTasks',
@@ -84,8 +83,7 @@ import Chart from 'chart.js/auto';
 
         }
     }
-    //main objects
-    let myChart=new Chart(ctx, {
+    const config={
         type: 'bar',
         data: {
             datasets: [{
@@ -104,7 +102,10 @@ import Chart from 'chart.js/auto';
                     {x: ['2023-03-02','2023-03-07'], y: "Task 3", name: 'Ariel',status: 2},
                     {x: ['2023-03-04','2023-03-10'], y: "Task 4", name:'Donat',status: 0},
                     {x: ['2023-03-15','2023-03-20'], y: "Task 5", name: 'Leila',status: 2},
-                    {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1}],
+                    {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1},
+                    {x: ['2023-04-12','2023-04-19'], y: "Task 6", name: 'Erik',status: 1}
+                ]
+
 
 
             }],
@@ -129,8 +130,8 @@ import Chart from 'chart.js/auto';
                             day:'d'
                         }
                     },
-                    min:'2023-03-01',
-                    max: '2023-03-30'
+                    // min:'2023-03-01',
+                    // max: '2023-03-30'
                 }
             },
             plugins:{
@@ -159,27 +160,31 @@ import Chart from 'chart.js/auto';
         },
         plugins:[assignedTasks,todayLine,status]
 
-    });
+    }
+    //main objects
+   let myChart= new Chart(ctx, config);
+    let canvas = document.createElement('canvas');
+    canvas.setAttribute('id','myChart');
+    document.querySelector(".container").appendChild(canvas);
+    myChart=new Chart(document.getElementById('myChart',config));
+    const inputDate=document.createElement("input");
+    inputDate.className="dateId";
+    document.querySelector(".container").appendChild(inputDate);
+    inputDate.addEventListener("change",createData);
+    function createData(){
+        const year=this.value.substring(0,4);
+        const month=this.value.substring(5,7);
+        const lastDay=(y,m)=>{
+            return new Date(y,m,0).getDate();
+        }
+        const startDate=`${year}-${month}-01`;
+        const endDate=`${year}-${month}-${lastDay(year,month)}`;
+        console.log(endDate);
 
-    document.querySelector(".container").innerHTML = '<canvas id="myChart"></canvas>';
-    let p1=document.querySelector("#myChart");
-    new Chart(p1)
-    // const inputDate=document.querySelector("#dateId");
-    // inputDate.addEventListener("change",createData);
-    // function createData(){
-    //     const year=this.value.substring(0,4);npm run
-    //     const month=this.value.substring(5,7);
-    //     const lastDay=(y,m)=>{
-    //         return new Date(y,m,0).getDate();
-    //     }
-    //     const startDate=`${year}-${month}-01`;
-    //     const endDate=`${year}-${month}-${lastDay(year,month)}`;
-    //     console.log(endDate);
-    //
-    //     // myChart.config.options.scales.x.min=startDate;
-    //     // myChart.config.options.scales.x.min=endDate;
-    //     myCharts.update();
-    // }
+        myChart.config.options.scales.x.min=startDate;
+        myChart.config.options.scales.x.min=endDate;
+        myChart.update();
+    }
         })
 
 ();

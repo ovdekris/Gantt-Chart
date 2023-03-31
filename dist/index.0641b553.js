@@ -632,7 +632,6 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.fillText("Today", x.getPixelForValue(new Date()), bottom + 15);
         }
     };
-    console.log(new Date());
     //assignedTasks plugin
     const assignedTasks = {
         id: "assignedTasks",
@@ -650,8 +649,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.restore();
         }
     };
-    //main objects
-    let myChart = new (0, _autoDefault.default)(ctx, {
+    const config = {
         type: "bar",
         data: {
             datasets: [
@@ -719,6 +717,15 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             y: "Task 6",
                             name: "Erik",
                             status: 1
+                        },
+                        {
+                            x: [
+                                "2023-04-12",
+                                "2023-04-19"
+                            ],
+                            y: "Task 6",
+                            name: "Erik",
+                            status: 1
                         }
                     ]
                 }
@@ -742,9 +749,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                         displayFormats: {
                             day: "d"
                         }
-                    },
-                    min: "2023-03-01",
-                    max: "2023-03-30"
+                    }
                 }
             },
             plugins: {
@@ -780,26 +785,30 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             todayLine,
             status
         ]
-    });
-    document.querySelector(".container").innerHTML = '<canvas id="myChart"></canvas>';
-    let p1 = document.querySelector("#myChart");
-    new (0, _autoDefault.default)(p1);
-// const inputDate=document.querySelector("#dateId");
-// inputDate.addEventListener("change",createData);
-// function createData(){
-//     const year=this.value.substring(0,4);npm run
-//     const month=this.value.substring(5,7);
-//     const lastDay=(y,m)=>{
-//         return new Date(y,m,0).getDate();
-//     }
-//     const startDate=`${year}-${month}-01`;
-//     const endDate=`${year}-${month}-${lastDay(year,month)}`;
-//     console.log(endDate);
-//
-//     // myChart.config.options.scales.x.min=startDate;
-//     // myChart.config.options.scales.x.min=endDate;
-//     myCharts.update();
-// }
+    };
+    //main objects
+    let myChart = new (0, _autoDefault.default)(ctx, config);
+    let canvas = document.createElement("canvas");
+    canvas.setAttribute("id", "myChart");
+    document.querySelector(".container").appendChild(canvas);
+    myChart = new (0, _autoDefault.default)(document.getElementById("myChart", config));
+    const inputDate = document.createElement("input");
+    inputDate.className = "dateId";
+    document.querySelector(".container").appendChild(inputDate);
+    inputDate.addEventListener("change", createData);
+    function createData() {
+        const year = this.value.substring(0, 4);
+        const month = this.value.substring(5, 7);
+        const lastDay = (y, m)=>{
+            return new Date(y, m, 0).getDate();
+        };
+        const startDate = `${year}-${month}-01`;
+        const endDate = `${year}-${month}-${lastDay(year, month)}`;
+        console.log(endDate);
+        myChart.config.options.scales.x.min = startDate;
+        myChart.config.options.scales.x.min = endDate;
+        myChart.update();
+    }
 })();
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {
