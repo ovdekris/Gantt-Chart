@@ -107,8 +107,7 @@ import Chart from 'chart.js/auto';
                     {x: ['2023-03-02','2023-03-07'], y: "Task 3", name: 'Ariel',status: 2},
                     {x: ['2023-03-04','2023-03-10'], y: "Task 4", name:'Donat',status: 0},
                     {x: ['2023-03-15','2023-03-20'], y: "Task 5", name: 'Leila',status: 2},
-                    {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1},
-                    {x: ['2023-04-12','2023-04-19'], y: "Task 6", name: 'Erik',status: 1}
+                    {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1}
                 ]
 
 
@@ -121,7 +120,7 @@ import Chart from 'chart.js/auto';
                 padding:{
                     left:100,
                     right:70,
-                    bottom:20
+                    bottom:40
                 }
             },
             indexAxis: 'y',

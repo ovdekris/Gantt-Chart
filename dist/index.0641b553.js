@@ -719,15 +719,6 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             y: "Task 6",
                             name: "Erik",
                             status: 1
-                        },
-                        {
-                            x: [
-                                "2023-04-12",
-                                "2023-04-19"
-                            ],
-                            y: "Task 6",
-                            name: "Erik",
-                            status: 1
                         }
                     ]
                 }
@@ -738,7 +729,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 padding: {
                     left: 100,
                     right: 70,
-                    bottom: 20
+                    bottom: 40
                 }
             },
             indexAxis: "y",

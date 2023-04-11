@@ -8,20 +8,24 @@
 </head>
 <body>
 <div class="container">
-    <canvas id="myChart"></canvas>
-    <input id="dateId" type="month">
+    <div class="chartBox">
+        <canvas id="myChart"></canvas>
+        <input id="dateId" type="month">
+        <br> <br>
+        <hr>
+        <br>
+        <input type="text" id="nameTask">
+        <input type="date" id="startDate">
+        <input type="date" id="endDate">
+        <input type="text" id="teamMember">
+        <select id="statusTask">
+            <option value="0">Delayed</option>
+            <option value="1">Pending</option>
+            <option value="2">Completed</option>
+        </select>
 </div>
-
-<script>// function changeData(date){
-//   const year=date.value.substring(0,4);
-//   const month=date.value.substring(5,7);
-//   const lastDay=(y,m)=>{
-//       return new Date(y,m,0).getDate();
-//   }
-//     const startDate=`${year}-${month}-01`;
-//     const endDate=`${year}-${month}-${lastDay(year,month)}`;
-// }
-
+</div>
+<script>
 </script>
 <!-- <script type="module" src="dimensions.js"></script> -->
 <script src="/index.0641b553.js" defer=""></script>
