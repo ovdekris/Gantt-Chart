@@ -604,32 +604,34 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         afterDatasetsDraw (chart, args, pluginOptions) {
             const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
-            ctx.beginPath();
-            ctx.lineWidth = 3;
-            ctx.strokeStyle = "rgba(102,102,102,1)";
-            ctx.setLineDash([
-                6,
-                6
-            ]);
-            ctx.moveTo(x.getPixelForValue(new Date()), top);
-            ctx.lineTo(x.getPixelForValue(new Date()), bottom);
-            ctx.stroke();
-            ctx.setLineDash([]);
-            ctx.beginPath();
-            ctx.lineWidth = 1;
-            ctx.strokeStyle = "rgba(102,102,102,1)";
-            ctx.fillStyle = "rgba(102,102,102,1)";
-            ctx.moveTo(x.getPixelForValue(new Date()), top + 3);
-            ctx.lineTo(x.getPixelForValue(new Date()) - 6, top - 6);
-            ctx.lineTo(x.getPixelForValue(new Date()) + 6, top - 6);
-            ctx.closePath();
-            ctx.stroke();
-            ctx.fill();
-            ctx.restore();
-            ctx.font = "bold 12px sans-serif";
-            ctx.fillStyle = "rgba(102,102,102,1)";
-            ctx.textAlign = "center";
-            ctx.fillText("Today", x.getPixelForValue(new Date()), bottom + 15);
+            if (x.getPixelForValue(new Date()) >= left && x.getPixelForValue(new Date()) <= right) {
+                ctx.beginPath();
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = "rgba(102,102,102,1)";
+                ctx.setLineDash([
+                    6,
+                    6
+                ]);
+                ctx.moveTo(x.getPixelForValue(new Date()), top);
+                ctx.lineTo(x.getPixelForValue(new Date()), bottom);
+                ctx.stroke();
+                ctx.setLineDash([]);
+                ctx.beginPath();
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = "rgba(102,102,102,1)";
+                ctx.fillStyle = "rgba(102,102,102,1)";
+                ctx.moveTo(x.getPixelForValue(new Date()), top + 3);
+                ctx.lineTo(x.getPixelForValue(new Date()) - 6, top - 6);
+                ctx.lineTo(x.getPixelForValue(new Date()) + 6, top - 6);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.fill();
+                ctx.restore();
+                ctx.font = "bold 12px sans-serif";
+                ctx.fillStyle = "rgba(102,102,102,1)";
+                ctx.textAlign = "center";
+                ctx.fillText("Today", x.getPixelForValue(new Date()), bottom + 15);
+            }
         }
     };
     //assignedTasks plugin
@@ -757,7 +759,12 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                     display: false
                 },
                 tooltip: {
+                    displayColors: false,
+                    yAlign: "bottom",
                     callbacks: {
+                        label: (ctx)=>{
+                            return "";
+                        },
                         title: (ctx)=>{
                             const startDate = new Date(ctx[0].raw.x[0]);
                             const endDate = new Date(ctx[0].raw.x[1]);
