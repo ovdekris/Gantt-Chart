@@ -186,5 +186,14 @@ import Chart from 'chart.js/auto';
       myChart.config.options.scales.x.max=endDate;
       myChart.update();
     }
+    const buttonAddTask=document.getElementById("addTask");
+    buttonAddTask.addEventListener("click",addTask);
+    function addTask(){
+        const startDateTask=document.getElementById("startDate");
+        const endDateTask=document.getElementById("endDate");
+        const nameTask=document.getElementById("nameTask");
+        const teamMember=document.getElementById("teamMember");
+        const statusTask=document.getElementById("statusTask");
+    }
         })();
 

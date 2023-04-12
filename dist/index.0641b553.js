@@ -800,6 +800,15 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         myChart.config.options.scales.x.max = endDate;
         myChart.update();
     }
+    const buttonAddTask = document.getElementById("addTask");
+    buttonAddTask.addEventListener("click", addTask);
+    function addTask() {
+        const startDateTask = document.getElementById("startDate");
+        const endDateTask = document.getElementById("endDate");
+        const nameTask = document.getElementById("nameTask");
+        const teamMember = document.getElementById("teamMember");
+        const statusTask = document.getElementById("statusTask");
+    }
 })();
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {
