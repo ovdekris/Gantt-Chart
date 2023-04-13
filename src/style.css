@@ -25,4 +25,18 @@ input{
     border-radius: 20px;
     border: none;
     padding: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#addTask{
+    width: 120px;
+    height: 40px;
+    background-color: rgb(255, 0, 255,0.4);
+    border-radius: 20px;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+    margin-left: 10px;
 }

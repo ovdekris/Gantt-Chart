@@ -23,10 +23,25 @@ body {
 input {
   width: 120px;
   height: 40px;
+  cursor: pointer;
   background-color: #f0f6;
   border: none;
   border-radius: 20px;
+  margin-right: 10px;
   padding: 5px;
+}
+
+#addTask {
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #f0f6;
+  border: none;
+  border-radius: 20px;
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bolder;
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

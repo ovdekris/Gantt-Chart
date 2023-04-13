@@ -194,6 +194,13 @@ import Chart from 'chart.js/auto';
         const nameTask=document.getElementById("nameTask");
         const teamMember=document.getElementById("teamMember");
         const statusTask=document.getElementById("statusTask");
+        myChart.data.datasets[0].data.push({x: [startDateTask.value,endDateTask.value], y: nameTask.value, name:teamMember.value,status: parseInt(statusTask.value)});
+        startDateTask.value="";
+        endDateTask.value="";
+        nameTask.value="";
+        teamMember.value="";
+        statusTask.value="";
+        myChart.update();
     }
         })();
 
