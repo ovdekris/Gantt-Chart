@@ -808,7 +808,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         const nameTask = document.getElementById("nameTask");
         const teamMember = document.getElementById("teamMember");
         const statusTask = document.getElementById("statusTask");
-        myChart.data.datasets[0].data.push({
+        const arrayLength = myChart.data.datasets[0].data.length;
+        myChart.data.datasets[0].data[arrayLength] = {
             x: [
                 startDateTask.value,
                 endDateTask.value
@@ -816,7 +817,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             y: nameTask.value,
             name: teamMember.value,
             status: parseInt(statusTask.value)
-        });
+        };
         startDateTask.value = "";
         endDateTask.value = "";
         nameTask.value = "";
@@ -824,6 +825,16 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         statusTask.value = "";
         myChart.update();
     }
+    function addNames() {
+        const names = document.getElementById("nameTask");
+        const namesArray = myChart.data.datasets[0].data.map((item)=>{
+            return item.name;
+        });
+        namesArray.forEach((itemName)=>{
+            const option = document.createElement("option");
+        });
+    }
+    addNames();
 })();
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {

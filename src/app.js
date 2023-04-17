@@ -194,7 +194,8 @@ import Chart from 'chart.js/auto';
         const nameTask=document.getElementById("nameTask");
         const teamMember=document.getElementById("teamMember");
         const statusTask=document.getElementById("statusTask");
-        myChart.data.datasets[0].data.push({x: [startDateTask.value,endDateTask.value], y: nameTask.value, name:teamMember.value,status: parseInt(statusTask.value)});
+        const arrayLength=myChart.data.datasets[0].data.length;
+        myChart.data.datasets[0].data[arrayLength]=({x: [startDateTask.value,endDateTask.value], y: nameTask.value, name:teamMember.value,status: parseInt(statusTask.value)});
         startDateTask.value="";
         endDateTask.value="";
         nameTask.value="";
@@ -202,5 +203,16 @@ import Chart from 'chart.js/auto';
         statusTask.value="";
         myChart.update();
     }
+    function addNames(){
+        const names=document.getElementById('nameTask');
+         const namesArray=myChart.data.datasets[0].data.map((item)=>{
+             return item.name;
+         })
+        namesArray.forEach((itemName)=>{
+        const option=document.createElement('option');
+
+        })
+    }
+    addNames();
         })();
 
