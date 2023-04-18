@@ -823,15 +823,23 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         nameTask.value = "";
         teamMember.value = "";
         statusTask.value = "";
+        addNames();
         myChart.update();
     }
     function addNames() {
-        const names = document.getElementById("nameTask");
+        const names = document.getElementById("teamMember");
+        while(names.firstElementChild)names.removeChild(names.firstElementChild);
         const namesArray = myChart.data.datasets[0].data.map((item)=>{
             return item.name;
         });
+        const namesArrayFilter = [
+            ...new Set(namesArray)
+        ];
         namesArray.forEach((itemName)=>{
             const option = document.createElement("option");
+            option.value = itemName;
+            option.innerHTML = itemName;
+            names.appendChild(option);
         });
     }
     addNames();

@@ -44,4 +44,16 @@ input {
   font-weight: bolder;
 }
 
+#teamMember {
+  width: 120px;
+  height: 40px;
+  cursor: pointer;
+  color: #000;
+  background-color: #f0f6;
+  border: none;
+  border-radius: 20px;
+  margin-right: 10px;
+  padding: 5px;
+}
+
 /*# sourceMappingURL=index.2cdaf7bc.css.map */
