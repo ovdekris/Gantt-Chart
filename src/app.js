@@ -88,6 +88,25 @@ import Chart from 'chart.js/auto';
 
         }
     }
+    const weekend={
+        id:'weekend',
+        beforeDatasetsDraw(chart, args, options) {
+            const {ctx,  chartArea:{top,bottom,left,right,width,height
+            }, scales:{x,y}}=chart;
+            ctx.save();
+            x.ticks.forEach((tick,index)=>{
+                const day=new Date(tick.value).getDay();
+                if (day===6||day===0){
+                    ctx.fillStyle=options.weekendColor;
+                    ctx.fillRect(x.getPixelForValue(tick.value),
+                        top,
+                        x.getPixelForValue(new Date(tick.value).setHours(24))-x.getPixelForValue(tick.value),
+                        height);
+                }
+            })
+
+        }
+    }
     const config={
         type: 'bar',
         data: {
@@ -139,6 +158,9 @@ import Chart from 'chart.js/auto';
                 }
             },
             plugins:{
+                weekend:{
+                    weekendColor:'rgba(102,102,102,.1)'
+                },
                 legend:{
                     display:false
                 },
@@ -167,7 +189,7 @@ import Chart from 'chart.js/auto';
                 }
             }
         },
-        plugins:[assignedTasks,todayLine,status]
+        plugins:[assignedTasks,todayLine,status, weekend]
 
     };
     //main objects

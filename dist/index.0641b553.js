@@ -651,6 +651,20 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.restore();
         }
     };
+    const weekend = {
+        id: "weekend",
+        beforeDatasetsDraw (chart, args, options) {
+            const { ctx , chartArea: { top , bottom , left , right , width , height  } , scales: { x , y  }  } = chart;
+            ctx.save();
+            x.ticks.forEach((tick, index)=>{
+                const day = new Date(tick.value).getDay();
+                if (day === 6 || day === 0) {
+                    ctx.fillStyle = options.weekendColor;
+                    ctx.fillRect(x.getPixelForValue(tick.value), top, x.getPixelForValue(new Date(tick.value).setHours(24)) - x.getPixelForValue(tick.value), height);
+                }
+            });
+        }
+    };
     const config = {
         type: "bar",
         data: {
@@ -746,6 +760,9 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 }
             },
             plugins: {
+                weekend: {
+                    weekendColor: "rgba(102,102,102,.1)"
+                },
                 legend: {
                     display: false
                 },
@@ -781,7 +798,8 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         plugins: [
             assignedTasks,
             todayLine,
-            status
+            status,
+            weekend
         ]
     };
     //main objects
