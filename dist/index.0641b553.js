@@ -757,6 +757,22 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                             day: "d"
                         }
                     }
+                },
+                y: {
+                    min: 0,
+                    max: 5,
+                    labels: [
+                        "Task 1",
+                        "Task 2",
+                        "Task 3",
+                        "Task 4",
+                        "Task 5",
+                        "Task 6",
+                        "Task 7",
+                        "Task 8",
+                        "Task 9",
+                        "Task 10"
+                    ]
                 }
             },
             plugins: {
@@ -861,6 +877,16 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         });
     }
     addNames();
+    const taskOptionsFirst = document.querySelector("#taskOptionsFirst");
+    const taskOptionsSecond = document.querySelector("#taskOptionsSecond");
+    taskOptionsFirst.addEventListener("change", showTask);
+    taskOptionsSecond.addEventListener("change", showTask);
+    function showTask() {
+        const yScale = myChart.config.options.scales.y;
+        yScale.min = yScale.labels[taskOptionsFirst.value];
+        yScale.max = yScale.labels[taskOptionsSecond.value];
+        myChart.update();
+    }
 })();
 
 },{"chartjs-adapter-date-fns":"hmLQz","chartjs-adapter-luxon":"hmCSx","chart.js/auto":"d8NN9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hmLQz":[function(require,module,exports) {
