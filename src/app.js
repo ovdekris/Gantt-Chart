@@ -17,13 +17,15 @@ import Chart from 'chart.js/auto';
             ctx.font='bold 10px FontAwesome';
             ctx.textBaseline='middle';
             data.datasets[0].data.map((data,index)=>{
-                ctx.beginPath();
-                ctx.fillStyle=colors[data.status];
-                ctx.arc(right+25,y.getPixelForValue(index),12,0,angle*360,false);
-                ctx.closePath();
-                ctx.fill();
-                ctx.fillStyle="white";
-                ctx.fillText(icons[data.status],right+25,y.getPixelForValue(index));
+                if(y.getPixelForValue(index)>top&&y.getPixelForValue(index)<bottom){
+                    ctx.beginPath();
+                    ctx.fillStyle=colors[data.status];
+                    ctx.arc(right+25,y.getPixelForValue(index),12,0,angle*360,false);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.fillStyle="white";
+                    ctx.fillText(icons[data.status],right+25,y.getPixelForValue(index));
+                }
             });
             ctx.font="bolder 12px sans-serif";
             ctx.fillStyle="black";
@@ -81,7 +83,10 @@ import Chart from 'chart.js/auto';
             ctx.textBaseline='middle';
             ctx.textAlign='left';
             data.datasets[0].data.map((data,index)=>{
-                ctx.fillText(data.name,5,y.getPixelForValue(index));
+                if(y.getPixelForValue(index)>top&&y.getPixelForValue(index)<bottom)
+                {
+                    ctx.fillText(data.name,5,y.getPixelForValue(index))
+                }
                 ctx.fillText("Names",10,top-15);
                })
             ctx.restore();
@@ -128,9 +133,6 @@ import Chart from 'chart.js/auto';
                     {x: ['2023-03-15','2023-03-20'], y: "Task 5", name: 'Leila',status: 2},
                     {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1}
                 ]
-
-
-
             }],
 
         },
@@ -197,6 +199,9 @@ import Chart from 'chart.js/auto';
         plugins:[assignedTasks,todayLine,status, weekend]
 
     };
+    const labelsArray=data.datasets[0].data.map((dataPoint,index)=>{
+        console.log(dataPoint.y)
+    })
     //main objects
   const myChart=new Chart(document.getElementById('myChart'), config);
     //function for chart data filter

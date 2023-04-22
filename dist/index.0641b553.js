@@ -573,7 +573,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
     const status = {
         id: "status",
         afterDatasetsDraw (chart, args) {
-            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            const { ctx , data: data1 , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             const icons = [
                 "",
                 "",
@@ -583,14 +583,16 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             ctx.save();
             ctx.font = "bold 10px FontAwesome";
             ctx.textBaseline = "middle";
-            data.datasets[0].data.map((data, index)=>{
-                ctx.beginPath();
-                ctx.fillStyle = colors[data.status];
-                ctx.arc(right + 25, y.getPixelForValue(index), 12, 0, angle * 360, false);
-                ctx.closePath();
-                ctx.fill();
-                ctx.fillStyle = "white";
-                ctx.fillText(icons[data.status], right + 25, y.getPixelForValue(index));
+            data1.datasets[0].data.map((data1, index)=>{
+                if (y.getPixelForValue(index) > top && y.getPixelForValue(index) < bottom) {
+                    ctx.beginPath();
+                    ctx.fillStyle = colors[data1.status];
+                    ctx.arc(right + 25, y.getPixelForValue(index), 12, 0, angle * 360, false);
+                    ctx.closePath();
+                    ctx.fill();
+                    ctx.fillStyle = "white";
+                    ctx.fillText(icons[data1.status], right + 25, y.getPixelForValue(index));
+                }
             });
             ctx.font = "bolder 12px sans-serif";
             ctx.fillStyle = "black";
@@ -602,7 +604,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
     const todayLine = {
         id: "todayLine",
         afterDatasetsDraw (chart, args, pluginOptions) {
-            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            const { ctx , data: data1 , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
             if (x.getPixelForValue(new Date()) >= left && x.getPixelForValue(new Date()) <= right) {
                 ctx.beginPath();
@@ -638,14 +640,14 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
     const assignedTasks = {
         id: "assignedTasks",
         afterDatasetsDraw (chart, args, options) {
-            const { ctx , data , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
+            const { ctx , data: data1 , chartArea: { top , bottom , left , right  } , scales: { x , y  }  } = chart;
             ctx.save();
             ctx.font = "bold 12px sans-serif";
             ctx.fillStyle = "black";
             ctx.textBaseline = "middle";
             ctx.textAlign = "left";
-            data.datasets[0].data.map((data, index)=>{
-                ctx.fillText(data.name, 5, y.getPixelForValue(index));
+            data1.datasets[0].data.map((data1, index)=>{
+                if (y.getPixelForValue(index) > top && y.getPixelForValue(index) < bottom) ctx.fillText(data1.name, 5, y.getPixelForValue(index));
                 ctx.fillText("Names", 10, top - 15);
             });
             ctx.restore();
@@ -818,6 +820,9 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
             weekend
         ]
     };
+    const labelsArray = data.datasets[0].data.map((dataPoint, index)=>{
+        console.log(dataPoint.y);
+    });
     //main objects
     const myChart = new (0, _autoDefault.default)(document.getElementById("myChart"), config);
     //function for chart data filter
