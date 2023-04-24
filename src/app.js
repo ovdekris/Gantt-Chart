@@ -134,8 +134,8 @@ import Chart from 'chart.js/auto';
                     {x: ['2023-03-12','2023-03-19'], y: "Task 6", name: 'Erik',status: 1}
                 ]
             }],
-
         },
+
         options: {
             layout:{
                 padding:{
@@ -199,11 +199,15 @@ import Chart from 'chart.js/auto';
         plugins:[assignedTasks,todayLine,status, weekend]
 
     };
-    const labelsArray=data.datasets[0].data.map((dataPoint,index)=>{
-        console.log(dataPoint.y)
-    })
+
     //main objects
   const myChart=new Chart(document.getElementById('myChart'), config);
+    const lasbelsArray=myChart.data.datasets[0].data.map((dataItem,index)=>{
+        return dataItem.y;
+        }
+    )
+    const labelsArrayFilter=[...new Set(lasbelsArray)];
+
     //function for chart data filter
     document.getElementById("dateId").addEventListener("change",chartFilter);
     function chartFilter(date){
@@ -254,6 +258,22 @@ import Chart from 'chart.js/auto';
         })
     }
     addNames();
+
+    function addTasks(){
+        const tasks=document.getElementById('nameTask');
+        while (tasks.firstElementChild){
+            tasks.removeChild(tasks.firstElementChild);
+
+        }
+
+        labelsArrayFilter.forEach((itemName)=>{
+            const option=document.createElement('option');
+            option.value=itemName;
+            option.innerHTML=itemName;
+            tasks.appendChild(option);
+        })
+    }
+    addTasks();
     const taskOptionsFirst=document.querySelector("#taskOptionsFirst");
     const taskOptionsSecond=document.querySelector("#taskOptionsSecond");
     taskOptionsFirst.addEventListener("change",showTask);
