@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-  width: 80%;
+  width: 75%;
   background-color: #fff;
   border: 10px solid #ff1493;
   border-radius: 50px;
@@ -27,6 +27,7 @@ input {
   background-color: #f0f6;
   border: none;
   border-radius: 20px;
+  outline: none;
   margin-right: 10px;
   padding: 5px;
 }
@@ -38,13 +39,14 @@ input {
   background-color: #f0f6;
   border: none;
   border-radius: 20px;
+  outline: none;
   margin-left: 10px;
   padding: 5px;
   font-size: 14px;
   font-weight: bolder;
 }
 
-#teamMember {
+#teamMember, #statusTask {
   width: 120px;
   height: 40px;
   cursor: pointer;
@@ -52,6 +54,20 @@ input {
   background-color: #f0f6;
   border: none;
   border-radius: 20px;
+  outline: none;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+#taskOptionsSecond, #taskOptionsFirst {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  color: #000;
+  background-color: #f0f6;
+  border: none;
+  border-radius: 20px;
+  outline: none;
   margin-right: 10px;
   padding: 5px;
 }

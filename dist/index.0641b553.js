@@ -869,7 +869,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         myChart.update();
     }
     function addNames() {
-        const names = document.getElementById("teamMember");
+        const names = document.getElementById("names");
         while(names.firstElementChild)names.removeChild(names.firstElementChild);
         const namesArray = myChart.data.datasets[0].data.map((item)=>{
             return item.name;
@@ -880,18 +880,16 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         namesArray.forEach((itemName)=>{
             const option = document.createElement("option");
             option.value = itemName;
-            option.innerHTML = itemName;
             names.appendChild(option);
         });
     }
     addNames();
     function addTasks() {
-        const tasks = document.getElementById("nameTask");
+        const tasks = document.getElementById("tasks");
         while(tasks.firstElementChild)tasks.removeChild(tasks.firstElementChild);
         labelsArrayFilter.forEach((itemName)=>{
             const option = document.createElement("option");
             option.value = itemName;
-            option.innerHTML = itemName;
             tasks.appendChild(option);
         });
     }

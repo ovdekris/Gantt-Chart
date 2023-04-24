@@ -241,7 +241,7 @@ import Chart from 'chart.js/auto';
         myChart.update();
     }
     function addNames(){
-        const names=document.getElementById('teamMember');
+        const names=document.getElementById('names');
         while (names.firstElementChild){
             names.removeChild(names.firstElementChild);
 
@@ -253,14 +253,13 @@ import Chart from 'chart.js/auto';
         namesArray.forEach((itemName)=>{
         const option=document.createElement('option');
         option.value=itemName;
-        option.innerHTML=itemName;
         names.appendChild(option);
         })
     }
     addNames();
 
     function addTasks(){
-        const tasks=document.getElementById('nameTask');
+        const tasks=document.getElementById('tasks');
         while (tasks.firstElementChild){
             tasks.removeChild(tasks.firstElementChild);
 
@@ -269,7 +268,6 @@ import Chart from 'chart.js/auto';
         labelsArrayFilter.forEach((itemName)=>{
             const option=document.createElement('option');
             option.value=itemName;
-            option.innerHTML=itemName;
             tasks.appendChild(option);
         })
     }
