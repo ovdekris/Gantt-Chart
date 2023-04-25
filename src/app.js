@@ -160,8 +160,8 @@ import Chart from 'chart.js/auto';
                 },
                 y:{
                     min:0,
-                    max:5,
-                    labels:["Task 1","Task 2","Task 3","Task 4","Task 5","Task 6","Task 7","Task 8","Task 9","Task 10"]
+                    max:10,
+                    labels:["Task 1","Task 2","Task 3","Task 4","Task 5", "Task 6"]
                 }
             },
             plugins:{
@@ -222,26 +222,9 @@ import Chart from 'chart.js/auto';
       myChart.config.options.scales.x.max=endDate;
       myChart.update();
     }
-    const buttonAddTask=document.getElementById("addTask");
-    buttonAddTask.addEventListener("click",addTask);
-    function addTask(){
-        const startDateTask=document.getElementById("startDate");
-        const endDateTask=document.getElementById("endDate");
-        const nameTask=document.getElementById("nameTask");
-        const teamMember=document.getElementById("teamMember");
-        const statusTask=document.getElementById("statusTask");
-        const arrayLength=myChart.data.datasets[0].data.length;
-        myChart.data.datasets[0].data[arrayLength]=({x: [startDateTask.value,endDateTask.value], y: nameTask.value, name:teamMember.value,status: parseInt(statusTask.value)});
-        startDateTask.value="";
-        endDateTask.value="";
-        nameTask.value="";
-        teamMember.value="";
-        statusTask.value="";
-        addNames();
-        myChart.update();
-    }
+
     function addNames(){
-        const names=document.getElementById('names');
+        const names=document.getElementById('tasks');
         while (names.firstElementChild){
             names.removeChild(names.firstElementChild);
 
@@ -259,7 +242,7 @@ import Chart from 'chart.js/auto';
     addNames();
 
     function addTasks(){
-        const tasks=document.getElementById('tasks');
+        const tasks=document.getElementById('names');
         while (tasks.firstElementChild){
             tasks.removeChild(tasks.firstElementChild);
 
@@ -282,6 +265,25 @@ import Chart from 'chart.js/auto';
         yScale.max=yScale.labels[taskOptionsSecond.value];
         myChart.update();
 
+    }
+    const buttonAddTask=document.getElementById("addTask");
+    buttonAddTask.addEventListener("click",addTask);
+    function addTask(){
+        const startDateTask=document.getElementById("startDate");
+        const endDateTask=document.getElementById("endDate");
+        const nameTask=document.getElementById("nameTask");
+        const teamMember=document.getElementById("teamMember");
+        const statusTask=document.getElementById("statusTask");
+        const arrayLength=myChart.data.datasets[0].data.length;
+        myChart.data.datasets[0].data[arrayLength]=({x: [startDateTask.value,endDateTask.value], y: nameTask.value, name:teamMember.value,status: parseInt(statusTask.value)});
+        startDateTask.value="";
+        endDateTask.value="";
+        nameTask.value="";
+        teamMember.value="";
+        statusTask.value="";
+        addNames();
+        addTasks();
+        myChart.update();
     }
         })();
 

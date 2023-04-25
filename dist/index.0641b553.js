@@ -762,18 +762,14 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
                 },
                 y: {
                     min: 0,
-                    max: 5,
+                    max: 10,
                     labels: [
                         "Task 1",
                         "Task 2",
                         "Task 3",
                         "Task 4",
                         "Task 5",
-                        "Task 6",
-                        "Task 7",
-                        "Task 8",
-                        "Task 9",
-                        "Task 10"
+                        "Task 6"
                     ]
                 }
             },
@@ -842,6 +838,42 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         myChart.config.options.scales.x.max = endDate;
         myChart.update();
     }
+    function addNames() {
+        const names = document.getElementById("tasks");
+        while(names.firstElementChild)names.removeChild(names.firstElementChild);
+        const namesArray = myChart.data.datasets[0].data.map((item)=>{
+            return item.name;
+        });
+        const namesArrayFilter = [
+            ...new Set(namesArray)
+        ];
+        namesArray.forEach((itemName)=>{
+            const option = document.createElement("option");
+            option.value = itemName;
+            names.appendChild(option);
+        });
+    }
+    addNames();
+    function addTasks() {
+        const tasks = document.getElementById("names");
+        while(tasks.firstElementChild)tasks.removeChild(tasks.firstElementChild);
+        labelsArrayFilter.forEach((itemName)=>{
+            const option = document.createElement("option");
+            option.value = itemName;
+            tasks.appendChild(option);
+        });
+    }
+    addTasks();
+    const taskOptionsFirst = document.querySelector("#taskOptionsFirst");
+    const taskOptionsSecond = document.querySelector("#taskOptionsSecond");
+    taskOptionsFirst.addEventListener("change", showTask);
+    taskOptionsSecond.addEventListener("change", showTask);
+    function showTask() {
+        const yScale = myChart.config.options.scales.y;
+        yScale.min = yScale.labels[taskOptionsFirst.value];
+        yScale.max = yScale.labels[taskOptionsSecond.value];
+        myChart.update();
+    }
     const buttonAddTask = document.getElementById("addTask");
     buttonAddTask.addEventListener("click", addTask);
     function addTask() {
@@ -866,42 +898,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
         teamMember.value = "";
         statusTask.value = "";
         addNames();
-        myChart.update();
-    }
-    function addNames() {
-        const names = document.getElementById("names");
-        while(names.firstElementChild)names.removeChild(names.firstElementChild);
-        const namesArray = myChart.data.datasets[0].data.map((item)=>{
-            return item.name;
-        });
-        const namesArrayFilter = [
-            ...new Set(namesArray)
-        ];
-        namesArray.forEach((itemName)=>{
-            const option = document.createElement("option");
-            option.value = itemName;
-            names.appendChild(option);
-        });
-    }
-    addNames();
-    function addTasks() {
-        const tasks = document.getElementById("tasks");
-        while(tasks.firstElementChild)tasks.removeChild(tasks.firstElementChild);
-        labelsArrayFilter.forEach((itemName)=>{
-            const option = document.createElement("option");
-            option.value = itemName;
-            tasks.appendChild(option);
-        });
-    }
-    addTasks();
-    const taskOptionsFirst = document.querySelector("#taskOptionsFirst");
-    const taskOptionsSecond = document.querySelector("#taskOptionsSecond");
-    taskOptionsFirst.addEventListener("change", showTask);
-    taskOptionsSecond.addEventListener("change", showTask);
-    function showTask() {
-        const yScale = myChart.config.options.scales.y;
-        yScale.min = yScale.labels[taskOptionsFirst.value];
-        yScale.max = yScale.labels[taskOptionsSecond.value];
+        addTasks();
         myChart.update();
     }
 })();
