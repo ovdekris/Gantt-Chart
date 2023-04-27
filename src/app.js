@@ -202,7 +202,7 @@ import Chart from 'chart.js/auto';
 
     //main objects
   const myChart=new Chart(document.getElementById('myChart'), config);
-    const lasbelsArray=myChart.data.datasets[0].data.map((dataItem,index)=>{
+    var lasbelsArray=myChart.data.datasets[0].data.map((dataItem,index)=>{
         return dataItem.y;
         }
     )

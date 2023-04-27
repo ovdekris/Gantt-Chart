@@ -818,7 +818,7 @@ var _autoDefault = parcelHelpers.interopDefault(_auto);
     };
     //main objects
     const myChart = new (0, _autoDefault.default)(document.getElementById("myChart"), config);
-    const lasbelsArray = myChart.data.datasets[0].data.map((dataItem, index)=>{
+    var lasbelsArray = myChart.data.datasets[0].data.map((dataItem, index)=>{
         return dataItem.y;
     });
     const labelsArrayFilter = [
